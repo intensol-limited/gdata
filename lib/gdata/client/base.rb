@@ -181,6 +181,10 @@ module GData
       def oauth! api_key, api_secret
         self.auth_handler = GData::Auth::OAuth.new(api_key, api_secret)
       end
+      
+      def authorize_from_access token, token_secret
+        @auth_handler.authorize_from_request token, token_secret
+      end
     end
   end
 end
