@@ -183,7 +183,7 @@ module GData
       end
       
       def authorize_from_access token, token_secret
-        @auth_handler.authorize_from_request token, token_secret
+        @auth_handler.authorize_from_access token, token_secret
       end
     end
   end
