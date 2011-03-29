@@ -60,6 +60,14 @@ module GData
           req.body = request.body.to_s
         end
         
+        helper = ::OAuth::Client::Helper.new(req, {
+          :consumer => request.consumer,
+          :request_uri => request.url,
+          :token => request.token
+        })
+        
+        request.headers.merge!({"Authorization" => helper.header})
+        
         request.headers.each do |key, value|
           req[key] = value
         end
