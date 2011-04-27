@@ -185,6 +185,18 @@ module GData
       def authorize_from_access token, token_secret
         @auth_handler.authorize_from_access token, token_secret
       end
+      
+      def authorize_from_request req_token, req_secret, verifier = nil
+        @auth_handler.authorize_from_request req_token, req_secret, verifier
+      end
+    
+      def request_token options = {}
+        @auth_handler.request_token options
+      end
+      
+      def access_token options = {}
+        @auth_handler.request_token options
+      end
     end
   end
 end
