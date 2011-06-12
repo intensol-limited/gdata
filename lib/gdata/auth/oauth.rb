@@ -85,7 +85,7 @@ module GData
         #request.class.class_eval do
         #  attr_accessor :consumer, :token
         #end unless request.respond_to?(:consumer)
-        helper = ::OAuth::Client::Helper.new(req, {
+        helper = ::OAuth::Client::Helper.new(request, {
           :consumer => consumer,
           :request_uri => request.url,
           :token => access_token
