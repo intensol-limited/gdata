@@ -82,12 +82,16 @@ module GData
       
       # Sign request. Called in GData::Client::Base.make_request
       def sign_request! request
-        request.class.class_eval do
-          attr_accessor :consumer, :token
-        end unless request.respond_to?(:consumer)
+        #request.class.class_eval do
+        #  attr_accessor :consumer, :token
+        #end unless request.respond_to?(:consumer)
+        helper = ::OAuth::Client::Helper.new(request, {
+          :consumer => consumer,
+          :request_uri => request.url,
+          :token => access_token
+        })
         
-        request.consumer = consumer
-        request.token = access_token
+        request.headers.merge!({"Authorization" => helper.header})
       end
       
     end
